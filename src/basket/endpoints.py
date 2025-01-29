@@ -3,20 +3,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Endpoints:
-
-    get_basket = f'{os.getenv('HOST')}/Basket'
-    post_Excel = f'{os.getenv('HOST')}/Basket/AsExcel'
-    delete_position = f'{os.getenv('HOST')}/Basket/Position'
-    add_position = f'{os.getenv('HOST')}/Basket/Position'
-    put_position = f'{os.getenv('HOST')}/Basket/Position'
-    clear_basket = f'{os.getenv('HOST')}/Basket/Clear'
-    replenishment = f'{os.getenv('HOST')}/Basket/Replenishment'
-    load_from_excel = f'{os.getenv('HOST')}/Basket/LoadFromExcel'
-    actualize = f'{os.getenv('HOST')}/Basket/Actualize'
+    # получить список деталей из корзины
+    @staticmethod
+    def get_basket_token(UserId: int, OrganizationId: int, Login: str) -> str:
+        return f'{os.getenv('HOST')}/Basket?UserId={UserId}&OrganizationId={OrganizationId}&Login={Login}'
 
 def main():
-    endpoints = Endpoints()
-    print(endpoints.get_basket)
-
+    pass
 if __name__ == '__main__':
-    main()
+    print(Endpoints.get_basket_token(UserId=1264372, OrganizationId=274116, Login='UAI5981842'))
