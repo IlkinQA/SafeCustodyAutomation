@@ -8,7 +8,11 @@ class Endpoints:
     def get_basket_token() -> str:
         return f'{os.getenv('HOST')}/Basket?UserId={os.getenv('UserId')}&OrganizationId={os.getenv('OrganizationId')}&Login={os.getenv("Login")}'
 
+    @staticmethod
+    def add_position_endpoint():
+        return f'{os.getenv('HOST')}/Basket/Position'
+
 def main():
     pass
 if __name__ == '__main__':
-    print(Endpoints.get_basket_token())
+    print(Endpoints.add_position_endpoint())
