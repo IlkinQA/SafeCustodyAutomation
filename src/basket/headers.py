@@ -13,9 +13,54 @@ class Header:
     def add_position_header():
         headers = {
             'accept': '*/*',
-            'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
             'Authorization': f'Bearer {sigh_in()}',
             'Content-Type': 'application/json',
         }
         return headers
+
+    @staticmethod
+    def clear_basket_header():
+        headers = {
+            'accept': '*/*',
+            'Authorization': f'Bearer {sigh_in()}',
+            'Content-Type': 'application/json'
+        }
+        return headers
+
+    @staticmethod
+    def update_basket_header():
+        headers = {
+            'accept': '*/*',
+            'Authorization': f'Bearer {sigh_in()}',
+            'Content-Type': 'application/json'
+        }
+        return headers
+
+    @staticmethod
+    def clear_position_header():
+        headers = {
+            'accept': '*/*',
+            'Authorization': f'Bearer {sigh_in()}',
+            'Content-Type': 'application/json'
+        }
+        return headers
+
+    @staticmethod
+    def replenishment_header():
+        headers = {
+            'accept': '*/*',
+            'Authorization': f'Bearer {sigh_in()}',
+            'Content-Type': 'application/json'
+        }
+        return headers
+
+    @staticmethod
+    def actualize_basket_header():
+        headers = {
+            'accept': '*/*',
+            'Authorization': f'Bearer {sigh_in()}',
+            'Content-Type': 'application/json'
+        }
+        return headers
+
 
