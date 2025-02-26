@@ -54,13 +54,16 @@ class BasketAPI:
         response = requests.request('POST', url, headers=headers, json=payload)
         return response
 
-    def actualize_basket(self):
-        pass
+    def actualize_basket(self, payload: dict):
+        url = Endpoints.actualize_basket_endpoint()
+        headers = Header.actualize_basket_header()
+        response = requests.request('POST', url, headers=headers, json=payload)
+        return response
 
 def main():
     pass
 if __name__ == '__main__':
     from src.basket.data import *
     basket = BasketAPI()
-    print(basket.clear_position({"UserId":1264372,"OrganizationId":274116,"Login":"UAI5981842","DetailId":52800971,"RegionId":64,"PartyCount":1,"Quantity":1}))
+
 

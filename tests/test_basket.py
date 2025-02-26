@@ -1,46 +1,20 @@
+from http.client import responses
 
 import pytest
 import requests
-
-import os
-from dotenv import load_dotenv
-
 from src.basket.basket_api import BasketAPI
+from src.basket.utils.basket_utils import get_basket_quantity
+from src.product.utils.product_utils import get_product_quantity_by_detail_id
+from src.matrix_client.utils.matrix_client_utils import get_matrix_quantity
 
-
-@pytest.fixture(autouse=True)
-def load_environment():
-    load_dotenv()
-    return {
-        'UserId' : int(os.getenv('UserId')),
-        'OrganizationId' : int(os.getenv('OrganizationId')),
-        'Login' : os.getenv('Login')
-    }
-# Фикстура для создания объекта basketApi
-@pytest.fixture(autouse=True)
-def basket():
-    from src.basket.basket_api import BasketAPI
-    basket = BasketAPI()
-    return basket
 # Функция для получения параметризованных данных
 def add_position_payload():
     from src.basket.data.Examples import add_position_data
     return add_position_data
 
-@pytest.fixture(autouse=True)
-def add_payload():
-    return {"UserId":1264372,"OrganizationId":274116,"Login":"UAI5981842","DetailId":52800971,"RegionId":64,"PartyCount":1,"Quantity":1}
-
-def get_basket(create_object):
-    response = create_object.get_basket()
-    # Проверяем, работает ли метод получения корзины
-    if response.status_code == 200:
-        return True # Возвращаем значение True, если корзина доступна
-
 @pytest.mark.parametrize('payload', add_position_payload())
-def test_add_position( payload, basket):
-    assert get_basket(basket) == True
-    response = basket.add_position(payload)
+def test_add_position(payload, basket):
+    response = basket.add_position(payload=payload)
     assert response.status_code == 204
     yield
     basket.clear_basket()
@@ -53,3 +27,7 @@ def test_clear_position(add_payload):
     clear_position_response = basket.clear_position(add_payload)
     assert clear_position_response.status_code == 204, f'Method clear_position failed. Response code: {clear_position_response.status_code}.'
 
+def test_replenishment(basket_api, product, user_data):
+    # перед тестом очищаем корзину
+    basket_api.clear_basket()
+    assert basket_api.replenishment(user_data).status_code == 204, 'Method replenishment failed.'
