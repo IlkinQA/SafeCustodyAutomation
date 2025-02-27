@@ -13,4 +13,6 @@ class PricesAPI:
 
 
 if __name__ == "__main__":
-    pass
+    prices_api = PricesAPI()
+    response = prices_api.offers_by_detail('IB111043')
+    print(response.status_code)
