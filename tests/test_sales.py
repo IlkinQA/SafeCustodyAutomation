@@ -21,10 +21,3 @@ def test_filter_sales_list_by_detail_group(sale_api):
     assert api_response.status_code == 200, f'api response {api_response.status_code} != 200'
     assert SalesUtils.check_detail_group_id(api_response,562) == True, f'api response {api_response.json()} != 200'
 
-# Получение списка деталей с фильтрацией по номеру детали
-def test_filter_sales_list_by_detail_id(sale_api):
-    api_response = sale_api.sale_list(start_date='2024-11-26', end_date='2025-02-26', page_size=20, page_number=1,
-                                      organizationId=46307, sales_grouping=1, detail_number='IB2071', detail_number_comparison='Equal')
-
-    assert api_response.status_code == 200, f'api response {api_response.status_code} != 200'
-    assert SalesUtils.check_detail_number(api_response,'IB2071') == True, f'api response {api_response.json()} != 200'

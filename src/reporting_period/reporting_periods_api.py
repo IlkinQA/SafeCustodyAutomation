@@ -28,5 +28,5 @@ class ReportingPeriodAPI:
 
 if __name__ == '__main__':
     api = ReportingPeriodAPI()
-    response = api.reporting_periods().json()
+    response = api.without_report()
     print(response)

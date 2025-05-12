@@ -31,3 +31,4 @@ def test_replenishment(basket_api, product, user_data):
     # перед тестом очищаем корзину
     basket_api.clear_basket()
     assert basket_api.replenishment(user_data).status_code == 204, 'Method replenishment failed.'
+

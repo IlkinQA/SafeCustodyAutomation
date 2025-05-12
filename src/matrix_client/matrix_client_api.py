@@ -8,6 +8,10 @@ class MatrixClientApi:
         pass
 
     def get_matrix_client_by_id(self, matrix_client_id):
+        """
+        :param matrix_client_id:  
+        :return:
+        """
         url = Endpoints.get_matrix_by_id(matrix_client_id)
         headers = Headers().get_matrix_by_id_headers()
         response = requests.get(url, headers=headers)
